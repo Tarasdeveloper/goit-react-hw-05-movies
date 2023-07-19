@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'Services/Api';
 import ErrorMessageToUser from './ErrorOccurred';
-import Credits from './Credits';
+import Credits from './Credits/Credits';
 
 const Cast = () => {
   const { movieId } = useParams();

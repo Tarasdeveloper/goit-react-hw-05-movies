@@ -1,7 +1,15 @@
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Suspense } from 'react';
 import PropTypes from 'prop-types';
-import Loader from './Loader';
+import Loader from '../Loader';
+import {
+  OneMovieCast,
+  OneMovieImg,
+  OneMovieInfo,
+  OneMovieLi,
+  OneMovieSpan,
+  OneMovieTopContainer,
+} from './MovieDetailPage.styled';
 
 export default function MovieDetailPage({ data }) {
   const {
@@ -22,8 +30,8 @@ export default function MovieDetailPage({ data }) {
 
   return (
     <div>
-      <div>
-        <img
+      <OneMovieTopContainer>
+        <OneMovieImg
           src={
             poster_path
               ? `https://image.tmdb.org/t/p/w500${poster_path}`
@@ -35,41 +43,43 @@ export default function MovieDetailPage({ data }) {
           <h1>
             {original_title ? original_title : 'There should have been a title'}
           </h1>
-          <p>
-            <span>Rating: </span> {rating ? rating : 'Absent'}
-          </p>
-          <p>
-            <span>Release date: </span> {date ? date : 'Absent'}
-          </p>
-          <p>
-            <span>Genre: </span> {genresArray ? genresArray : 'Repeated'}
-          </p>
-          <p>
-            <span>Description: </span>
-            {overview
-              ? overview
-              : 'There should have been a description here, but it is better to see once than to read a hundred times.'}
-          </p>
-        </div>
-      </div>
-      <div>
-        <span>Additional information</span>
-      </div>
-      <div>
-        <div>
           <div>
-            <NavLink to="cast" state={location.state}>
-              Cast
-            </NavLink>
+            <p>
+              <OneMovieSpan>Rating:</OneMovieSpan>
+              {rating ? rating : 'Absent'}
+            </p>
+            <p>
+              <OneMovieSpan>Release date:</OneMovieSpan>
+              {date ? date : 'Absent'}
+            </p>
+            <p>
+              <OneMovieSpan>Genre:</OneMovieSpan>
+              {genresArray ? genresArray : 'Repeated'}
+            </p>
+            <p>
+              <OneMovieSpan>Description: </OneMovieSpan>
+            </p>
           </div>
-          <div>|</div>
-          <div>
-            <NavLink to="reviews" state={location.state}>
-              Reviews
-            </NavLink>
-          </div>
+          {overview
+            ? overview
+            : 'There should have been a description here, but it is better to see once than to read a hundred times.'}
         </div>
+      </OneMovieTopContainer>
+      <div>
+        <OneMovieInfo>Additional information</OneMovieInfo>
       </div>
+      <ul>
+        <OneMovieLi>
+          <OneMovieCast to="cast" state={location.state}>
+            Cast &#10140;
+          </OneMovieCast>
+        </OneMovieLi>
+        <OneMovieLi>
+          <OneMovieCast to="reviews" state={location.state}>
+            Reviews &#10140;
+          </OneMovieCast>
+        </OneMovieLi>
+      </ul>
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

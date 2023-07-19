@@ -1,8 +1,9 @@
 import ErrorMessageToUser from 'components/ErrorOccurred';
 import Loader from 'components/Loader';
-import MoviesList from 'components/MoviesList';
+import MoviesList from 'components/MoviesList/MoviesList';
 import React, { useEffect, useState } from 'react';
 import { getTrendingMovies } from 'Services/Api';
+import { StyledMain } from './MovieDetails/MovieDetails.styled';
 
 const STATUS = {
   IDLE: 'idle',
@@ -35,12 +36,12 @@ const Home = () => {
   }, []);
 
   return (
-    <main>
+    <StyledMain>
       <h1>Trending today</h1>
       {status === STATUS.REJECTED && <ErrorMessageToUser message={error} />}
       {status === STATUS.PENDING && <Loader />}
       {status === STATUS.RESOLVED && <MoviesList movies={movies} />}
-    </main>
+    </StyledMain>
   );
 };
 

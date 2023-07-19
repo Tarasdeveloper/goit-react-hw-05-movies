@@ -2,9 +2,10 @@ import { useEffect, useState, useRef } from 'react';
 import { getMovieDetails } from 'Services/Api';
 import { useParams } from 'react-router-dom';
 import { Navigate, useLocation } from 'react-router-dom';
-import MovieDetailPage from 'components/MovieDetailPage';
+import MovieDetailPage from 'components/MovieDetailPage/MovieDetailPage';
 import Loader from 'components/Loader';
-import Button from 'components/Button';
+import Button from 'components/Button/Button';
+import { StyledMain } from './MovieDetails.styled';
 
 const STATUS = {
   IDLE: 'idle',
@@ -40,14 +41,14 @@ const MovieDetails = () => {
   }, [movieId, setMovieDetailPage]);
 
   return (
-    <section>
+    <StyledMain>
       <div>
         <Button location={backLink.current} />
         {error && <Navigate to="/" replace />}
         {status === STATUS.PENDING && <Loader />}
         {movieDetailPage && <MovieDetailPage data={movieDetailPage} />}
       </div>
-    </section>
+    </StyledMain>
   );
 };
 

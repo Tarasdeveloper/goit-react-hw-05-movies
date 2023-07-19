@@ -13,7 +13,7 @@ const Reviews = () => {
     getMovieReviews(movieId)
       .then(data => {
         if (data.results.length === 0) {
-          setError('There are no reviews');
+          setError('We don`t have any reviews for this movie');
           return;
         }
 

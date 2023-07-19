@@ -1,10 +1,11 @@
 import ErrorMessageToUser from 'components/ErrorOccurred';
 import Loader from 'components/Loader';
-import MoviesList from 'components/MoviesList';
-import SearchForm from 'components/SearchForm';
+import MoviesList from 'components/MoviesList/MoviesList';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'Services/Api';
+import { StyledMain } from './MovieDetails/MovieDetails.styled';
+import SearchForm from 'components/SearchForm/SearchForm';
 
 const STATUS = {
   IDLE: 'idle',
@@ -57,13 +58,12 @@ const Movies = () => {
   };
 
   return (
-    <div>
+    <StyledMain>
       <SearchForm formSubmit={formSubmit} errorMessage={formErrorMessage} />
-
       {status === STATUS.REJECTED && <ErrorMessageToUser message={error} />}
       {status === STATUS.RESOLVED && <MoviesList movies={movies} />}
       {status === STATUS.PENDING && <Loader />}
-    </div>
+    </StyledMain>
   );
 };
 

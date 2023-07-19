@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { BackBtn } from './Button.styled';
 
 export default function Button({ location }) {
   return (
     <>
-      <NavLink to={location}> Back to</NavLink>
+      <BackBtn to={location}> &#129144; Back to</BackBtn>
     </>
   );
 }

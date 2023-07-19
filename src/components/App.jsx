@@ -1,17 +1,17 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Layout from './Layout';
+import Layout from './Layout/Layout';
 import Loader from './Loader';
 
 const Home = lazy(() => import('Pages/Home'));
 const Movies = lazy(() => import('Pages/Movies'));
 const Cast = lazy(() => import('./Cast'));
 const Reviews = lazy(() => import('./Reviews'));
-const MovieDetails = lazy(() => import('Pages/MovieDetails'));
+const MovieDetails = lazy(() => import('Pages/MovieDetails/MovieDetails'));
 
 const App = () => {
   return (
-    <div>
+    <>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -25,7 +25,7 @@ const App = () => {
           </Route>
         </Routes>
       </Suspense>
-    </div>
+    </>
   );
 };
 

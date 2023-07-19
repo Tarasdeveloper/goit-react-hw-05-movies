@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
-import MovieListItem from './MovieListItem';
+import MovieListItem from '../MovieListItem';
+import { MoviesListUl } from './MoviesList.styled';
 
 const MoviesList = ({ movies }) => {
   return (
-    <ul>
+    <MoviesListUl>
       {movies.map(({ id, title, poster_path }) => {
         return (
           <MovieListItem key={id} id={id} title={title} poster={poster_path} />
         );
       })}
-    </ul>
+    </MoviesListUl>
   );
 };
 
